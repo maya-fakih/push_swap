@@ -1,6 +1,7 @@
 22-Dec_2025
 
 09:36 PM
+mfakih
 This is the 1st day working on push swap as a team mfakih and mitani.
 
 This paper will document all the needed algorithms and

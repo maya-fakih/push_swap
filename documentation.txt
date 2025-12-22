@@ -21,4 +21,19 @@ Understanding the subject:
 This is probably the most complicated part of any project, so we must go over it clearly to avoid
 any future confusion. This part will also decide most if not all the approaches to go about this project.
 
+11:16 PM
+mfakih
 
+After thorough reading of the subject I came to the following conclusions:
+1. parsing string inputs to linked lists
+2. the linked lists should be double sided why? well ig it can be useful later but we can start with one sided
+3. set up proper add and delete functions to this linked  list
+4. write the operations neatly
+5. test these steps sepeately for leaks using valgrind
+6. the algorithms are still work in process but i will attach a chat history of my mental warzones with gpt for reference
+7. after all operations are done we need functions that clean up
+8. they should free all lists and return a sungle string of operations seperated by \n only
+
+note the chat link: https://chatgpt.com/share/6949b50e-65c0-8001-9032-459da6007e21
+Now tmrw is a new day and a new mind to think with for now have a great rest of the night.
+i will see you in the morning. Goodnight.

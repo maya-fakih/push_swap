@@ -1,0 +1,23 @@
+22-Dec_2025
+
+09:36 PM
+This is the 1st day working on push swap as a team mfakih and mitani.
+
+This paper will document all the needed algorithms and
+stategies needed to understand the push_swap project such that
+you will be able to reinmplement it in your way.
+I will cover the most important algorithms and how to do each one in theory 
+which will be different than how you would go about it in code.
+
+I will also use this opportuinity to document my own progress through this
+project. Sharing my interpretation of the subject, the ideas i tried, the issues
+i faced and how we came to solve it.
+
+Each section will be titled with the date of that day and every subsection will clearly 
+demonstrate the next task at hand we are working on.
+
+Understanding the subject:
+This is probably the most complicated part of any project, so we must go over it clearly to avoid
+any future confusion. This part will also decide most if not all the approaches to go about this project.
+
+

@@ -1,4 +1,4 @@
-22-Dec_2025
+22-Dec-2025
 
 09:36 PM
 mfakih
@@ -37,3 +37,94 @@ After thorough reading of the subject I came to the following conclusions:
 note the chat link: https://chatgpt.com/share/6949b50e-65c0-8001-9032-459da6007e21
 Now tmrw is a new day and a new mind to think with for now have a great rest of the night.
 i will see you in the morning. Goodnight.
+
+23-dec-2025
+
+05:23 PM
+mfakih
+To continue on the plan we started yesterday we should define the i/o of this project
+The program shall take as input a string of numbers seperated by a space (purely numeric)
+the output should be a list of operations seperated by a \n.
+There fore we can conclude that we will need a split function to parse the input
+and a join function to generate the output format.
+we will also need a function to validate the input to be purely a 2d array of numbers
+
+now we can start by the basics probably we will not need all of libft but learning to integrates is a good idea
+(espessially learning how to create a makefile that compiles libft and then uses it to compile push_swap)
+
+First we should create the linked list structure.
+In our case we will be using the same structure from libft which is why we
+added it into the project directory and will be compiling it in the make file 
+(check the makefile for more details)
+
+Then we will build the operations in a file operations.c
+feel free to use this repository for inspiration but avoid copying codes as that will not be beneficial on the long return
+Below i will list each operation, describe its work and explain a structure of which it can be coded.
+
+In order to keep track of norminette we will make sure that we only have 5 functions/file
+which is why we will create an operations files described as operations.c 
+swap/rotate/rev_rotate.
+
+The 1st file swap_ops.c will include the functions sa sb and ss, such that
+sa (swap a): Swap the first two elements at the top of stack a.
+Do nothing if there is only one or no elements.
+in order to do that we shall 
+sb (swap b): Swap the first two elements at the top of stack b.
+Do nothing if there is only one or no elements.
+ss : sa and sb at the same time
+
+the 2nd file push_ops
+pa (push a): Take the first element at the top of b and put it at the top of a.
+Do nothing if b is empty.
+pb (push b): Take the first element at the top of a and put it at the top of b.
+Do nothing if a is empty
+
+the 3rd file
+ra (rotate a): Shift up all elements of stack a by one.
+The first element becomes the last one.
+rb (rotate b): Shift up all elements of stack b by one.
+The first element becomes the last one.
+rr : ra and rb at the same time.
+rra (reverse rotate a): Shift down all elements of stack a by one.
+The last element becomes the first one.
+rrb (reverse rotate b): Shift down all elements of stack b by one.
+The last element becomes the first one.
+rrr : rra and rrb at the same time.
+
+now upon further inspection of the operations it is very clear that we only need 4 functions
+swap:
+swaps the 1st 2 elements of any list
+we send it either a or b or we call it twice thus ss
+
+push:
+pushes the 1st element from lst 1 to lst 2 so it takes 2 argumens
+lst1 lst2 based on the order of sending stack_a stack_b we get pb 
+whereas sending the arguments as stack_b stack_a it will act as pa
+
+rotate:
+removes the top element of the list to the btm of it
+
+rev_rotate:
+removes the last element of the list to its top 
+
+11:55 PM
+mfakih
+So overall we will have these possible combinations to represent the operations as needed
+// Swap operations
+// sa : swap top 2 of stack a       -> swap(&stack_a);
+// sb : swap top 2 of stack b       -> swap(&stack_b);
+// ss : swap top 2 of both stacks   -> swap(&stack_a); swap(&stack_b);
+
+// Push operations
+// pa : push top of b to a          -> push(&stack_b, &stack_a);
+// pb : push top of a to b          -> push(&stack_a, &stack_b);
+
+// Rotate operations
+// ra : shift up all elements of a  -> rotate(&stack_a);
+// rb : shift up all elements of b  -> rotate(&stack_b);
+// rr : shift up both stacks        -> rotate(&stack_a); rotate(&stack_b);
+
+// Reverse rotate operations
+// rra : shift down all elements of a -> rev_rotate(&stack_a);
+// rrb : shift down all elements of b -> rev_rotate(&stack_b);
+// rrr : shift down both stacks        -> rev_rotate(&stack_a); rev_rotate(&stack_b);

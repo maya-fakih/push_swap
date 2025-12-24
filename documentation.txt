@@ -128,3 +128,79 @@ So overall we will have these possible combinations to represent the operations 
 // rra : shift down all elements of a -> rev_rotate(&stack_a);
 // rrb : shift down all elements of b -> rev_rotate(&stack_b);
 // rrr : shift down both stacks        -> rev_rotate(&stack_a); rev_rotate(&stack_b);
+
+01:55 AM 
+mfakih
+After some break time, it is time now to get back to the project and work on input parsing
+we shall decide the type of input we want to accept
+the flags  that would guide the excusion
+and deinfe any and all cases that would lead to an error.
+In standard language for now our input will be a string of unique numbers
+then we can also have a flag indicator that will be passed before the nb inputs to guide the program excution
+possible flags are as follows:
+THE PROGRAM SHOULD ALWAYS OUTPUT TO STDOUT THE LIST OF OPERATIONS SEPERATED BY /n
+
+
+THE POSSIBILITY OF A BENCH flag
+in case the --bench flag was sent it will be the 1st arg and in this case only we output to the STDERR the following benchmarks
+The computed disorder (% with two decimals).
+◦ The name of the strategy used and its theoretical complexity class.
+◦ The total number of operations.
+◦ The count of each operation type (sa, sb, ss, pa, pb, ra, rb, rr, rra, rrb,
+rrr).
+The benchmark output must be sent to stderr and only appear when the flag is
+present
+To send output to stderr remember that you can send that as a flag to the function write(fd, context, bytes)
+As a refresher fd=0 stdin
+               fd=1 stdout
+               fd=2 stderr
+so in this case all you gotta do is create a print function and send it fd=2
+
+
+THE PROGRAM SHOULD ALWAYS OUTPUT THE LIST OF OPERATIONS SEPERATED BY /n
+THE CHOSEN ALGORITHM DEPENDS ON THE 2ND FLAG IF AVAILABLE (argc > 3)
+1. --simple
+    uses the complexity O(n squared)
+2. --medium
+    uses the complexity O(n radical n)
+3. --complex 
+    uses the complexity O(nlogn)
+4. --adaptive
+    chooses the best complexity based on the degree of distortion
+5. if no flags are passed then it is considered to be adaptive.
+
+the flags are usually argv[1] if none are present then we assume the input is only the string 
+
+PARSING THE numbers
+there are more than one possibility to how far we want to go in terms of the accepted inputs.
+cases include but are not limited to:
+"1 2 3 4"
+"1" "2" "3" "4"
+1 "2" "3" 4
+
+therefore the choice of what accepted data is going to greately affect how we go about the code.
+for starers we will only accept input as a full string where all nbs are strictly seperated by white spaces (including + or - signs is accepted)
+adding extra layers of parsing is very time consuming therefore at this state we will not be exploring that operation
+
+In short we might have up to argc = 4
+
+if argc == 1
+this has to be the input list
+complexity is considered by default adaptice
+bench is considered by default to be faulse
+
+if argc == 2
+we check the 1st argument to be either bench or the complexity
+the 2nd argiment is to be parsed to be the number and anything else will be considered invalid resulting in an error
+
+if argc == 3
+we check the 1st arg to be bench strictly anything else is considred invalid
+we check the 2nd arg to be the complexity level anything else will be considerd invalid
+the 3rd argument is to be the nbr list to be parsed
+
+IN ALL THESE CASES ANY ERRORS IN PARSING THE NBS
+OR ANY EXPECTED ARGUMENTS WILL LEAD TO ERROR THUS TERMINATING THE PROGRAM
+dev note: make sure to free everything in case of error.
+duplicated inputs is also considered an error.
+
+argv[1] = program name

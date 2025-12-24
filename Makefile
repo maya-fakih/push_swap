@@ -1,16 +1,21 @@
 NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRC = push_swap.c swap_ops.c rotate_ops.c rev_rotate_ops.c utils.c
+SRC = push_swap.c operations.c utils.c
 OBJ = push_swap.o operations.o utils.o
+
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
-INCLUDES = -I $(LIBFT_DIR)
 
-all: $(LIBFT) $(NAME)
+PRINTF_DIR = ./printf 
+PRINTF = $(PRINTF_DIR)libftprintf.a
 
-$(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJ) $(LIBFT)
+INCLUDES = -I $(LIBFT_DIR) -I $(PRINTF_DIR)
+
+all: $(LIBFT) $(PRINTF) $(NAME)
+
+$(NAME): $(OBJ) $(LIBFT) $(PRINTF)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
@@ -18,12 +23,19 @@ $(NAME): $(OBJ) $(LIBFT)
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
+$(PRINTF):
+	$(MAKE) -C $(PRINTF_DIR)
+
 clean:
 	rm -f $(OBJ)
 	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(PRINTF_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(MAKE) -C $(PRINTF_DIR) fclean
 
 re: fclean all
+
+.PHONY: all clean fclean re

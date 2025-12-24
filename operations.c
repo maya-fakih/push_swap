@@ -40,9 +40,9 @@ void	push(t_list **lst1, t_list **lst2)
 
 void	rotate(t_list **stack)
 {
-	t_list *temp;
+	t_list	*temp;
 
-	if(!stack || !*stack || !(*stack)-> next)
+	if (!stack || !*stack || !(*stack)-> next)
 		return ;
 	temp = *stack;
 	*stack = temp -> next;
@@ -50,17 +50,17 @@ void	rotate(t_list **stack)
 	ft_lstadd_back(stack, temp);
 }
 
-void rev_rotate(t_list **stack)
+void	rev_rotate(t_list **stack)
 {
-	t_list *last;
-	t_list *before_last;
+	t_list	*last;
+	t_list	*before_last;
 
-	if (!stack || !*stack || !(*stack) -> next)
+	if (!stack || !*stack || !(*stack)-> next)
 		return ;
 	before_last = *stack;
 	last = before_last -> next;
 	while (last -> next != NULL)
-	{	
+	{
 		before_last = last;
 		last = last -> next;
 	}
@@ -68,4 +68,3 @@ void rev_rotate(t_list **stack)
 	last -> next = *stack;
 	*stack = last;
 }
-

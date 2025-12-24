@@ -204,3 +204,108 @@ dev note: make sure to free everything in case of error.
 duplicated inputs is also considered an error.
 
 argv[1] = program name
+
+
+24-dec-2025
+
+09:42 PM
+mfakih
+
+After some thoughts, we discovered that it is better to parse the input in a slightly different way to make it stricter and avoid ambiguous cases. The plan is as follows:
+
+Input Parsing Strategy:
+
+Initialize index and flags
+Start traversing argv at index i = 1.
+Initialize a boolean bench as false.
+Initialize a string strategy as null.
+Check for --bench flag
+If argv[i] equals --bench, set bench to true and increment i.
+If not, leave i as 1.
+Check for strategy flag
+If argv[i] matches one of the strategy flags (--simple, --medium, --complex, --adaptive), save it in strategy and increment i.
+If not, leave i unchanged.
+If an unknown flag is found, print Error\n to standard error and terminate.
+Collect the numbers
+From argv[i] to the last argument, join all arguments into a single string.
+This string should contain only numbers, optional + or - signs, and spaces.
+Any invalid character or malformed sign sequences should result in an error.
+Validate the number string
+Ensure that no + or - appears without a digit following it.
+Ensure that there are no multiple consecutive signs in front of a number.
+Ensure that only numeric characters, spaces, and single signs are present.
+If validation fails, free any allocated memory, print Error\n to standard error, and terminate.
+Split and check for duplicates
+Split the validated string into an array of strings using whitespace as a separator.
+Check the resulting array for duplicates
+If duplicates exist, free all memory, print Error\n to standard error, and terminate.
+Convert to linked list
+Convert each string in the array to an integer.
+Add each integer to the linked list representing stack_a, with the first element as the top of the stack.
+Free the array of strings after conversion.
+Error handling and cleanup
+At every step, memory allocated for flags, concatenated strings, arrays, or linked list nodes must be freed in case of an error.
+Only proceed to generating operations if all checks pass.
+
+
+Rationale:
+
+Restricting flags to the start prevents ambiguous input, such as flags appearing in the middle of the number list.
+Handles negative numbers correctly.
+Prevents malformed inputs like 1 2 - 5 or multiple signs.
+--bench output is sent to standard error, while operations always go to standard output.
+Keeps parsing deterministic and aligned with the subject’s requirements.
+
+
+Summary Logic Flow:
+
+Start at argv[1]
+Detect --bench → set boolean, increment index
+Detect strategy flag → save, increment index
+Join remaining arguments → validate string
+Validate numbers and signs
+Split string → check duplicates
+Convert to integers → populate linked list
+Free temporary memory → ready for operations
+But how would we excute all these edge cases checks in code well.
+Edge Cases and Pre-Split Validation
+After reviewing possible malformed inputs, we decided that some checks must be done before splitting the
+concatenated input string, because splitting blindly could allow invalid sequences to go unnoticed. The checks are as follows:
+Detect isolated signs
+An isolated + or - that does not precede a number should be considered invalid.
+
+Example: "1 2 - 5" → the - here is standalone → invalid.
+This is because atoi or similar conversion functions would misinterpret or fail on such cases.
+The detection function will scan the string from start to end:
+Skip spaces.
+If a + or - is found, check that the next character is a digit.
+If it is not a digit, return an error.
+Detect multiple consecutive signs
+Multiple signs before a number, such as ++3 or --5, are invalid.
+The function will iterate through the string and count consecutive signs:
+If more than one sign appears consecutively without a number between, return an error.
+Detect signs separated by spaces
+A sign separated by spaces from its number is invalid.
+Example: "1 2 - 3" → invalid because - is not attached directly to 3.
+The function will check that any + or - is immediately followed by digits, with no intervening spaces.
+Detect invalid characters
+Only digits, spaces, and one optional + or - per number are allowed.
+Any other character (a-z, punctuation other than +/-, etc.) triggers an error.
+Structure of the Pre-Split Validation Function
+Single function will take the concatenated input string as input.
+Iterates character by character.
+Maintains a simple state:
+Are we at a digit sequence?
+Did we just see a sign?
+Returns true if the string passes all checks.
+Returns false and triggers cleanup if any rule is broken.
+This function ensures that by the time we reach the split stage, every segment is a valid number and no malformed signs remain.
+This reduces downstream errors and simplifies memory management.
+Integration with the Main Parsing Flow
+After detecting flags and collecting the number string:
+Run the pre-split validation function.
+If it fails → free any allocated memory (flags, strings), print Error\n to stderr, terminate.
+If it passes → proceed to split, duplicate check, and linked list conversion.
+This way, all malformed inputs related to signs or spaces are caught early,
+and the split function can safely assume every token is a valid number. The approach guarantees stricter,
+predictable parsing that aligns with the 42 push_swap subject.

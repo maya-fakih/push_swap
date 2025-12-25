@@ -60,13 +60,13 @@ int	validate(int argc, char **argv, int *bench, char **comp)
 
 	init(&i, bench, comp, &nbs);
 	if (argc < 2)
-		return (free(comp), free(nbs), ft_printf(2, "Error no args\n"), -1);
+		return (free(nbs), ft_printf(2, "Error no args\n"), -1);
 	check_flags(argv, bench, comp, &i);
 	if (check_input(&i, argv, &nbs) == -1)
-		return (ft_printf(2, "Error in numbers format\n"), free(*comp), -1);
+		return (ft_printf(2, "Error in numbers format\n"), -1);
 	n = check_duplicates(nbs);
-	if (check_duplicates(nbs) == NULL)
-		return (ft_printf(2, "found duplicates\n"), free_array(n), -1);
+	if (n == NULL)
+		return (free(nbs),ft_printf(2, "found duplicates\n"), -1);
 	return (free(nbs), free_array(n), 0);
 }
 
@@ -76,6 +76,6 @@ int	main(int argc, char **argv)
 	char	*comp;
 
 	if (validate(argc, argv, &bench, &comp) == -1)
-		return (ft_printf(2, "validation error\n"), 0);
+		ft_printf(2, "validation error\n");
 	return (free(comp), 0);
 }

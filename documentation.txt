@@ -385,3 +385,13 @@ okay now if yoou run this test note that you will have this mid production stats
 this is totally normal l2n we have umm we are calling the funtion validate_input twice bel main 
 eh sa7 w even though they are in if elseif statements you are still calling it w inside that function you are printing studd
 to fix that we can just add a variable in the main like maybe call it umm alls_valid or smthn i will add that later now i need a break of seg faults and leaks :)
+
+
+25-dec-2025
+
+05:17 PM
+mfakih
+okay for this update we added the last part of the validations that is checking for duplicates
+now we only have to parse the 2d array we have of nbs into an actual linked list and use atoi to convert them to int
+so that we can perform compare functions on them easily now :)
+all leaks were managed in this update 

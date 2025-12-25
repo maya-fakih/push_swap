@@ -34,7 +34,7 @@ void	check_flags(char **argv, int *show_bench, char **complexity, int *i)
 	}
 }
 
-int	parse_input(int *i, char **argv, char **nbs)
+int	check_input(int *i, char **argv, char **nbs)
 {
 	int		j;
 	char	*s;
@@ -63,26 +63,10 @@ int	parse_input(int *i, char **argv, char **nbs)
 	return (0);
 }
 
-int	validate_input(int argc, char **argv)
+void	init(int *i, int *bench, char **comp, char **nbs)
 {
-	int		i;
-	int		bench;
-	char	*comp;
-	char	*nbs;
-
-	i = 1;
-	bench = 0;
-	comp = ft_strdup("--adaptive");
-	nbs = ft_strdup("\0");
-	if (argc < 2)
-		return (free(comp), free(nbs), ft_printf(2, "Error\n"), -1);
-	check_flags(argv, &bench, &comp, &i);
-	ft_printf(1, "complexity is set to: %s \n", comp);
-	if (parse_input(&i, argv, &nbs) == -1)
-		return (free (comp), ft_printf(2, "Error in numbers format\n"), -1);
-	ft_printf(1, "You parsed them correctly!\n");
-	ft_printf(1, "the nbs list entered is: %s\n", nbs);
-	free (nbs);
-	free (comp);
-	return (0);
+	*i = 1;
+	*bench = 0;
+	*comp = ft_strdup("--adaptive");
+	*nbs = ft_strdup(" ");
 }

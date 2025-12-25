@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	if (validate_input(argc, argv) == 0)
 		return (ft_printf(1, "alls good\n"), 0);
-	if (validate_input(argc, argv) == -1)
+	else if (validate_input(argc, argv) == -1)
 		return (ft_printf(1, "on no!\n"), 0);
 	return (0);
 }

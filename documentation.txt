@@ -341,4 +341,47 @@ i also changed the function ft_strjoin_sep to be more readable and better overal
 
 i did indeed move the parsing logic to their seperae file and created a helper funtion for the main to make sure we wont get into any norm issues in the near future
 the last part to check in parsing now is to split the string of inputs and check for duplicates
-to be done in the next commit 
+to be done in the next commit
+
+02:47 PM
+mfakih
+
+im back again i thought of a testcase where we wont notice an issue in parsing and that is if the last char was a letter or anything 0_0
+well that is l2n we are only checking it to be not + or  - instead we should check it to be isnumeric or space 
+here is a code snippet tto save you time of searching for it 
+
+
+int	parse_input(int *i, char **argv, char **nbs)
+{
+	int		j;
+	char	*s;
+
+	j = -1;
+	while (argv[*i])
+	{
+		ft_strjoin_sep(nbs, argv[*i], " ");
+		if (!*nbs)
+			return (-1);
+		(*i)++;
+	}
+	s = *nbs;
+	while (s[++j])
+	{
+		if (s[j] != ' ' && s[j] != '+' && s[j] != '-'
+			&& !ft_isdigit(s[j]))
+			return (free(s), -1);
+		if ((j > 0)
+			&& (s[j] == '-' || s[j] == '+')
+			&& ((s[j - 1] != ' ') || (!ft_isdigit(s[j + 1]))))
+			return (free(s), -1);
+	}
+    //THE ISSUE WAS HEREEEEEEEEEEE
+	if ((s[j] == 0) && (s[j - 1] == ' ' || !ft_isdigit(s[j - 1])))
+		return (free(s), -1);
+	return (0);
+}
+
+okay now if yoou run this test note that you will have this mid production stats printed twice
+this is totally normal l2n we have umm we are calling the funtion validate_input twice bel main 
+eh sa7 w even though they are in if elseif statements you are still calling it w inside that function you are printing studd
+to fix that we can just add a variable in the main like maybe call it umm alls_valid or smthn i will add that later now i need a break of seg faults and leaks :)

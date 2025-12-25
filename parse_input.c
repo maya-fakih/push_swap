@@ -58,7 +58,7 @@ int	parse_input(int *i, char **argv, char **nbs)
 			&& ((s[j - 1] != ' ') || (!ft_isdigit(s[j + 1]))))
 			return (free(s), -1);
 	}
-	if ((s[j] == 0) && (s[j - 1] == '+' || s[j - 1] == '-'))
+	if ((s[j] == 0) && (s[j - 1] == ' ' || !ft_isdigit(s[j - 1])))
 		return (free(s), -1);
 	return (0);
 }

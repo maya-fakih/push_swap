@@ -323,3 +323,22 @@ w hopefully the short looking implementation doesnt have a million leaks to debu
 i will test it tmrw after i finish the splitting part and stress test for leaks aw ana aw interpretation
 see yall when my brain is in better conditions
 gn
+
+12:54
+mfakih
+
+Hello again, and merry christmas!
+Today we will be testing the parsing logic we did yesterday for any memory leaks
+I will keep you guys updated on any issues we face and possible solutions
+check the file pushswap.c and utils.c to check the parsing logic
+i will probably move them to a file parsing.c soon 
+
+02:40 PM
+mfakih
+updated the parsing logic it was mainly great but had a few issues with dereferencing the pointers
+which led to seg faults but other than that we had minor fixes of memory leaks which is only freeing the complecity char * in case of error
+i also changed the function ft_strjoin_sep to be more readable and better overall :)
+
+i did indeed move the parsing logic to their seperae file and created a helper funtion for the main to make sure we wont get into any norm issues in the near future
+the last part to check in parsing now is to split the string of inputs and check for duplicates
+to be done in the next commit 

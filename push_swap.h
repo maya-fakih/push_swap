@@ -18,6 +18,7 @@
 
 void	check_flags(char **argv, int *show_bench, char **complexity, int *i);
 int		parse_input(int *i, char **argv, char **nbs);
-void	ft_strjoin_sep(char **s1, char *s2, char sep);
+void	ft_strjoin_sep(char **s1, char *s2, char *sep);
+int		validate_input(int argc, char **argv);
 
 #endif

@@ -12,22 +12,26 @@
 
 #include "push_swap.h"
 
-void	ft_strjoin_sep(char **s1, char *s2, char sep)
+void	ft_strjoin_sep(char **s1, char *s2, char *sep)
 {
 	char	*temp;
-	char	*with_sep;
-	char	*new_str;
 
-	if (!s1 || !s2)
-		return ;
-	with_sep = ft_strjoin((char []){sep, '\0'}, s2);
-	if (!with_sep)
-		return ;
-	new_str = ft_strjoin(*s1, with_sep);
-	free(with_sep);
-	if (!new_str)
+	if (!s1 || !*s1 || !s2 || !sep)
 		return ;
 	temp = *s1;
-	*s1 = new_str;
-	free(temp);
+	*s1 = ft_strjoin(*s1, sep);
+	if (!s1)
+	{
+		*s1 = temp;
+		return ;
+	}
+	free (temp);
+	temp = *s1;
+	*s1 = ft_strjoin(*s1, s2);
+	if (!s1)
+	{
+		*s1 = temp;
+		return ;
+	}
+	free (temp);
 }

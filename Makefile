@@ -2,17 +2,17 @@ NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRC = push_swap.c operations.c utils.c
-OBJ = push_swap.o operations.o utils.o
+OBJ = $(SRC:.c=.o)
 
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-PRINTF_DIR = ./printf 
-PRINTF = $(PRINTF_DIR)libftprintf.a
+PRINTF_DIR = ./printf
+PRINTF = $(PRINTF_DIR)/libftprintf.a
 
 INCLUDES = -I $(LIBFT_DIR) -I $(PRINTF_DIR)
 
-all: $(LIBFT) $(PRINTF) $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) $(PRINTF)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
@@ -21,7 +21,7 @@ $(NAME): $(OBJ) $(LIBFT) $(PRINTF)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+	$(MAKE) -C $(LIBFT_DIR) bonus
 
 $(PRINTF):
 	$(MAKE) -C $(PRINTF_DIR)

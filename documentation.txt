@@ -309,3 +309,17 @@ If it passes → proceed to split, duplicate check, and linked list conversion.
 This way, all malformed inputs related to signs or spaces are caught early,
 and the split function can safely assume every token is a valid number. The approach guarantees stricter,
 predictable parsing that aligns with the 42 push_swap subject.
+
+25-dec-2025
+
+02:33 AM
+mfakih
+Hey again, i finished a big chunk of the parsing described above
+hopefully my implementation has no leaks but if so we will test for that tmrw
+the next parts include splitting checking duplicates if so free everything
+else parse into linked list w from there we are done with the leaks part
+nshala tdal norminette in check
+w hopefully the short looking implementation doesnt have a million leaks to debug
+i will test it tmrw after i finish the splitting part and stress test for leaks aw ana aw interpretation
+see yall when my brain is in better conditions
+gn

@@ -22,7 +22,6 @@ void	check_flags(char **argv, int *show_bench, char **complexity, int *i)
 				return ;
 			*show_bench = 1;
 			(*i)++;
-				
 		}
 		else if (comp_flag(argv[*i]))
 		{

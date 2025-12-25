@@ -44,7 +44,6 @@ int	comp_flag(const char *s)
 		|| ft_streq(s, "--adaptive"));
 }
 
-
 int	ft_streq(const char *s, const char *lit)
 {
 	if (!s || !lit)

@@ -35,3 +35,21 @@ void	ft_strjoin_sep(char **s1, char *s2, char *sep)
 	}
 	free (temp);
 }
+
+int	comp_flag(const char *s)
+{
+	return (ft_streq(s, "--simple")
+		|| ft_streq(s, "--medium")
+		|| ft_streq(s, "--complex")
+		|| ft_streq(s, "--adaptive"));
+}
+
+
+int	ft_streq(const char *s, const char *lit)
+{
+	if (!s || !lit)
+		return (0);
+	if (ft_strlen(s) != ft_strlen(lit))
+		return (0);
+	return (ft_strncmp(s, lit, ft_strlen(lit)) == 0);
+}

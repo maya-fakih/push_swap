@@ -66,7 +66,7 @@ int	validate(int argc, char **argv, int *bench, char **comp)
 		return (ft_printf(2, "Error in numbers format\n"), -1);
 	n = check_duplicates(nbs);
 	if (n == NULL)
-		return (free(nbs),ft_printf(2, "found duplicates\n"), -1);
+		return (free(nbs), ft_printf(2, "found duplicates\n"), -1);
 	return (free(nbs), free_array(n), 0);
 }
 

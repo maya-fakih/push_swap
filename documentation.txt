@@ -395,3 +395,28 @@ okay for this update we added the last part of the validations that is checking 
 now we only have to parse the 2d array we have of nbs into an actual linked list and use atoi to convert them to int
 so that we can perform compare functions on them easily now :)
 all leaks were managed in this update 
+
+
+12:06 AM
+mfakih
+hey again guys, i went down a rabbit hole to figure out this final version i implemented of the check flags function.
+it now allows me to pass the flags in any order --bench --complexity or vice versa
+and thank god i do not remember all the things i tried l2n they were insanely complicated al fadi
+this is great for now 
+tmrws plan anu to create a new atoi function that is exactlyy like atoi
+except it checks if int is now > max int or < min int it will set a flag that is special abt this new version
+the flag is overflow bit and it is passed by reference 
+w laa akid its not just one bit in size its just an int haha take
+we put this flag let it live inside my parse_to_linked_list function and in case at any time this flag is now 1 not zero
+we clear the wholeee list
+then we return null w bi l validate function we will update it
+
+essa it returns int bs soon it will start returning a linked list 
+this we will keep bel main w use to do all our operations on yesterday
+
+halaa fi shi ba3d one of my friends bought to my attention i should fix this asapp
+anu if we compare +100 w 100 these are duplicates :(((
+man i wana sleppppp
+yala tmrw we will figure these out aw 
+WORSE CASE SENARIO? ILL JUST NOT ALLOW + SIGNS ANYMORE HEHE
+yal gn se yall tmrw nshala ysir 3ena shi metl l 3elam w l khal2 :)

@@ -20,5 +20,7 @@ void	check_flags(char **argv, int *show_bench, char **complexity, int *i);
 int		check_input(int *i, char **argv, char **nbs);
 void	ft_strjoin_sep(char **s1, char *s2, char *sep);
 void	init(int *i, int *bench, char **comp, char **nbs);
+int		ft_streq(const char *s, const char *lit);
+int		comp_flag(const char *s);
 
 #endif

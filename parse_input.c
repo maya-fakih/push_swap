@@ -14,23 +14,26 @@
 
 void	check_flags(char **argv, int *show_bench, char **complexity, int *i)
 {
-	if (argv[*i] && ft_strlen(argv[*i]) == 7
-		&& (ft_strncmp(argv[*i], "--bench", ft_strlen(argv[*i])) == 0))
+	while (argv[*i] && (*i) <= 2)
 	{
-		*show_bench = 1;
-		*i = *i + 1;
-	}
-	if (argv[*i] && ((ft_strlen(argv[*i]) == 8
-				&& (ft_strncmp(argv[*i], "--simple", 8) == 0
-					|| ft_strncmp(argv[*i], "--medium", 8) == 0))
-			|| (ft_strlen(argv[*i]) == 9
-				&& ft_strncmp(argv[*i], "--complex", 9) == 0)
-			|| (ft_strlen(argv[*i]) == 10
-				&& ft_strncmp(argv[*i], "--adaptive", 10) == 0)))
-	{
-		free(*complexity);
-		*complexity = ft_strdup(argv[*i]);
-		*i = *i + 1;
+		if (ft_streq(argv[*i], "--bench"))
+		{
+			if (*show_bench == 1)
+				return ;
+			*show_bench = 1;
+			(*i)++;
+				
+		}
+		else if (comp_flag(argv[*i]))
+		{
+			if (*i == 2 && *show_bench == 0)
+				return ;
+			free (*complexity);
+			*complexity = ft_strdup(argv[*i]);
+			(*i)++;
+		}
+		else
+			return ;
 	}
 }
 

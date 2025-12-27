@@ -420,3 +420,27 @@ man i wana sleppppp
 yala tmrw we will figure these out aw 
 WORSE CASE SENARIO? ILL JUST NOT ALLOW + SIGNS ANYMORE HEHE
 yal gn se yall tmrw nshala ysir 3ena shi metl l 3elam w l khal2 :)
+
+
+27-dec-2025
+
+05:44 PM
+mfakih
+mitani will now change the function validate to return a linked list that will be the main thing the main has to receive
+in case of any errors the validate function should now return NULL instead of the -1 flag it used to return as an int function
+
+the check duplicates function is checking now on strings so the issue of +100 vs 100 or any equivelent is still persisten
+so we need to delete that function and remake it into a check duplicates function that compares linked lists
+
+to avoidd havin extra functions we can directly compare them while we are building the list
+using some simple ducplicate checking loop 
+in case of any dups we should use the function ft_lstclear to free everything and thus return null 
+
+in case of a null list the main program will terminate
+
+we check the distortion 1st in main and then if disorder ==0  also return the solution as no moves
+else cal the function w now you send this function 
+else we will call a funtion that takes this list and bench and complexity and distortion to then sort the list
+
+
+

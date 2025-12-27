@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mitani <mitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 22:14:11 by mfakih            #+#    #+#             */
-/*   Updated: 2025/12/27 16:53:02 by mitani           ###   ########.fr       */
+/*   Updated: 2025/12/27 18:10:33 by mfakih           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,15 @@ t_list	*to_list(int argc, char **argv)
 	t_list	*lst;
 	int		i;
 	int		content;
+	int		overflow;
 
 	lst = NULL;
 	i = 1;
 	while (i < argc)
 	{
-		content = ft_atoi(argv[i]);
+		content = ft_atoi_overflow(argv[i], &overflow);
+		if (overflow == 1)
+			return (ft_lstclear(&lst, free), lst);
 		ft_lstadd_back(&lst, create_node(content));
 		i++;
 	}

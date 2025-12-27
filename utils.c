@@ -6,7 +6,7 @@
 /*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 01:36:59 by mfakih            #+#    #+#             */
-/*   Updated: 2025/12/27 17:43:31 by mfakih           ###   ########.fr       */
+/*   Updated: 2025/12/27 18:07:38 by mfakih           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_streq(const char *s, const char *lit)
 	return (ft_strncmp(s, lit, ft_strlen(lit)) == 0);
 }
 
-long	ft_atoi(const char *str, int *overflow)
+long	ft_atoi_overflow(const char *str, int *overflow)
 {
 	int		i;
 	int		sign;

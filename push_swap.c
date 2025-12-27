@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mitani <mitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 22:14:11 by mfakih            #+#    #+#             */
-/*   Updated: 2025/12/27 18:10:33 by mfakih           ###   ########.fr       */
+/*   Updated: 2025/12/27 18:31:24 by mitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,6 @@ char	**check_duplicates(char *nbs)
 	return (n);
 }
 
-int	validate(int argc, char **argv, int *bench, char **comp)
-{
-	int		i;
-	char	*nbs;
-	char	**n;
-
-	init(&i, bench, comp, &nbs);
-	if (argc < 2)
-		return (free(nbs), ft_printf(2, "Error no args\n"), -1);
-	check_flags(argv, bench, comp, &i);
-	if (check_input(&i, argv, &nbs) == -1)
-		return (ft_printf(2, "Error in numbers format\n"), -1);
-	n = check_duplicates(nbs);
-	if (n == NULL)
-		return (free(nbs), ft_printf(2, "found duplicates\n"), -1);
-	return (free(nbs), free_array(n), 0);
-}
-
 t_list	*create_node(int content)
 {
 	int	*a;
@@ -79,18 +61,23 @@ t_list	*create_node(int content)
 	return (ft_lstnew((void *)(a)));
 }
 
-t_list	*to_list(int argc, char **argv)
+t_list	*to_list(const char *nbs)
 {
 	t_list	*lst;
-	int		i;
 	int		content;
 	int		overflow;
+	int		i;
+	char	**n;
 
 	lst = NULL;
-	i = 1;
-	while (i < argc)
+	i = 0;
+	n = ft_split(nbs, ' ');
+	overflow = 0;
+	if (!n)
+		return (ft_printf(2, "couldnt split\n"), NULL);
+	while (n[i])
 	{
-		content = ft_atoi_overflow(argv[i], &overflow);
+		content = ft_atoi_overflow(n[i], &overflow);
 		if (overflow == 1)
 			return (ft_lstclear(&lst, free), lst);
 		ft_lstadd_back(&lst, create_node(content));
@@ -99,17 +86,34 @@ t_list	*to_list(int argc, char **argv)
 	return (lst);
 }
 
+t_list	*validate(int argc, char **argv, int *bench, char **comp)
+{
+	int		i;
+	char	*nbs;
+	char	**n;
+	t_list	*lst;
+
+	init(&i, bench, comp, &nbs);
+	if (argc < 2)
+		return (free(nbs), ft_printf(2, "Error no args\n"), NULL);
+	check_flags(argv, bench, comp, &i);
+	if (check_input(&i, argv, &nbs) == -1)
+		return (ft_printf(2, "Error in numbers format\n"), NULL);
+	n = check_duplicates(nbs);
+	if (n == NULL)
+		return (free(nbs), ft_printf(2, "found duplicates\n"), NULL);
+	lst = to_list(nbs);
+	return (free(nbs), free_array(n), lst);
+}
+
 int	main(int argc, char **argv)
 {
 	int		bench;
 	char	*comp;
 	t_list	*lst;
 
-	if (validate(argc, argv, &bench, &comp) == -1)
+	lst = validate(argc, argv, &bench, &comp);
+	if (lst == NULL)
 		ft_printf(2, "validation error\n");
-	lst = to_list(argc, argv);
-	ft_printf(1, "%d\n", ft_lstsize(lst));
-	if (lst)
-		ft_lstclear(&lst, free);
 	return (free(comp), 0);
 }

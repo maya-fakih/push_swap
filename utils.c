@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mitani <mitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 01:36:59 by mfakih            #+#    #+#             */
-/*   Updated: 2025/12/27 16:34:37 by mitani           ###   ########.fr       */
+/*   Updated: 2025/12/27 17:43:31 by mfakih           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ int	ft_streq(const char *s, const char *lit)
 	return (ft_strncmp(s, lit, ft_strlen(lit)) == 0);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str, int *overflow)
 {
-	int	i;
-	int	sign;
-	int	nb;
+	int		i;
+	int		sign;
+	long	nb;
 
 	i = 0;
 	sign = 1;
@@ -74,6 +74,8 @@ int	ft_atoi(const char *str)
 	{
 		nb *= 10;
 		nb += str[i] - '0';
+		if (nb > INT_MAX || nb < INT_MIN)
+			return (*overflow = 1 , 0);
 		i++;
 	}
 	return (nb * sign);

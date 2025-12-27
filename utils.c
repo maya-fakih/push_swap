@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mitani <mitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 01:36:59 by mfakih            #+#    #+#             */
-/*   Updated: 2025/12/25 01:37:01 by mfakih           ###   ########.fr       */
+/*   Updated: 2025/12/27 16:34:37 by mitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,30 @@ int	ft_streq(const char *s, const char *lit)
 	if (ft_strlen(s) != ft_strlen(lit))
 		return (0);
 	return (ft_strncmp(s, lit, ft_strlen(lit)) == 0);
+}
+
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	sign;
+	int	nb;
+
+	i = 0;
+	sign = 1;
+	nb = 0;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while ((str[i] >= '0' && str[i] <= '9'))
+	{
+		nb *= 10;
+		nb += str[i] - '0';
+		i++;
+	}
+	return (nb * sign);
 }

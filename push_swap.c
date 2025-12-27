@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mitani <mitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 22:14:11 by mfakih            #+#    #+#             */
-/*   Updated: 2025/12/24 22:14:13 by mfakih           ###   ########.fr       */
+/*   Updated: 2025/12/27 16:53:02 by mitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,43 @@ int	validate(int argc, char **argv, int *bench, char **comp)
 	return (free(nbs), free_array(n), 0);
 }
 
+t_list	*create_node(int content)
+{
+	int	*a;
+
+	a = malloc(sizeof(int));
+	*a = content;
+	return (ft_lstnew((void *)(a)));
+}
+
+t_list	*to_list(int argc, char **argv)
+{
+	t_list	*lst;
+	int		i;
+	int		content;
+
+	lst = NULL;
+	i = 1;
+	while (i < argc)
+	{
+		content = ft_atoi(argv[i]);
+		ft_lstadd_back(&lst, create_node(content));
+		i++;
+	}
+	return (lst);
+}
+
 int	main(int argc, char **argv)
 {
 	int		bench;
 	char	*comp;
+	t_list	*lst;
 
 	if (validate(argc, argv, &bench, &comp) == -1)
 		ft_printf(2, "validation error\n");
+	lst = to_list(argc, argv);
+	ft_printf(1, "%d\n", ft_lstsize(lst));
+	if (lst)
+		ft_lstclear(&lst, free);
 	return (free(comp), 0);
 }

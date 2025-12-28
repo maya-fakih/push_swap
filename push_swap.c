@@ -27,47 +27,22 @@ void	free_array(char **n)
 	free (n);
 }
 
-char	**check_duplicates(char *nbs)
-{
-	char	**n;
-	int		i;
-	int		j;
-
-	i = 0;
-	n = ft_split(nbs, ' ');
-	if (!n)
-		return (ft_printf(2, "couldnt split\n"), NULL);
-	while (n[i])
-	{
-		j = i + 1;
-		while (n[j])
-		{
-			if ((ft_strncmp(n[i], n[j], ft_strlen(n[i])) == 0)
-				&& ft_strlen(n[i]) == ft_strlen(n[j]))
-				return (free_array(n), NULL);
-			j++;
-		}
-		i++;
-	}
-	return (n);
-}
-
-int	validate(int argc, char **argv, int *bench, char **comp)
+t_list	*validate(int argc, char **argv, int *bench, char **comp)
 {
 	int		i;
 	char	*nbs;
-	char	**n;
+	t_list	*stack_a;
 
 	init(&i, bench, comp, &nbs);
 	if (argc < 2)
-		return (free(nbs), ft_printf(2, "Error no args\n"), -1);
+		return (free(nbs), ft_printf(2, "Error no args\n"), NULL);
 	check_flags(argv, bench, comp, &i);
 	if (check_input(&i, argv, &nbs) == -1)
-		return (ft_printf(2, "Error in numbers format\n"), -1);
-	n = check_duplicates(nbs);
-	if (n == NULL)
-		return (free(nbs), ft_printf(2, "found duplicates\n"), -1);
-	return (free(nbs), free_array(n), 0);
+		return (ft_printf(2, "Error in numbers format\n"), NULL);
+	stack_a = to_list(nbs);
+	if (stack_a == NULL)
+		return (free(nbs), ft_printf(2, "to list failed (dups or overflow)\n"), NULL);
+	return (free(nbs), (stack_a));
 }
 
 t_list	*create_node(int content)
@@ -79,37 +54,67 @@ t_list	*create_node(int content)
 	return (ft_lstnew((void *)(a)));
 }
 
-t_list	*to_list(int argc, char **argv)
+int		check_duplicates(t_list	*stack, int value)
+{
+	int	*current;
+
+	if (!stack)
+		return (0);
+	while (stack)
+	{
+		current = (int *)(stack -> content);
+		if (*current == value)
+			return (1);
+		stack = stack -> next;
+	}
+	return (0);
+}
+
+t_list	*to_list(char *nbs)
 {
 	t_list	*lst;
 	int		i;
 	int		content;
 	int		overflow;
+	char 	**n;
 
 	lst = NULL;
-	i = 1;
-	while (i < argc)
+	i = 0;
+	n = ft_split(nbs, ' ');
+	overflow = 0;
+	if (!n)
+		return (NULL);
+	while (n[i])
 	{
-		content = ft_atoi_overflow(argv[i], &overflow);
+		content = ft_atoi_overflow(n[i], &overflow);
 		if (overflow == 1)
-			return (ft_lstclear(&lst, free), lst);
+			return (free_array(n), ft_lstclear(&lst, free), NULL);
+		if (check_duplicates(lst, content) == 1)
+			return (free_array(n), ft_lstclear(&lst, free), NULL);
 		ft_lstadd_back(&lst, create_node(content));
 		i++;
 	}
-	return (lst);
+	return (free_array(n), lst);
+}
+
+void	print_content(void *content)
+{
+	if (!content)
+		return ;
+	ft_printf(1,"%d\n", *(int *)content);
 }
 
 int	main(int argc, char **argv)
 {
 	int		bench;
 	char	*comp;
-	t_list	*lst;
+	t_list	*stack_a;
 
-	if (validate(argc, argv, &bench, &comp) == -1)
-		ft_printf(2, "validation error\n");
-	lst = to_list(argc, argv);
-	ft_printf(1, "%d\n", ft_lstsize(lst));
-	if (lst)
-		ft_lstclear(&lst, free);
+	stack_a = validate(argc, argv, &bench, &comp);
+	if (!stack_a)
+		return (free(comp), 0);
+	ft_printf(1, "%d\n", ft_lstsize(stack_a));
+	ft_lstiter(stack_a, print_content);
+	ft_lstclear(&stack_a, free);
 	return (free(comp), 0);
 }

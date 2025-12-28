@@ -1,0 +1,44 @@
+name: Norminette and Make Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  norminette_and_make:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    - name: Set up Python (for Norminette)
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.8'  # Set the python version you need
+
+    - name: Install Norminette
+      run: |
+        python3 -m pip install --upgrade pip
+        pip install norminette
+
+    - name: Run Norminette
+      run: |
+        norminette .  # This runs norminette on the current directory (or specify another path)
+
+    - name: Install Make
+      run: sudo apt-get install build-essential
+
+    - name: Run Make
+      run: |
+        make  # This runs `make` to build your project
+
+    - name: Check Make success
+      if: ${{ failure() }}
+      run: |
+        echo "Make failed! Please check the errors above."
+        exit 1

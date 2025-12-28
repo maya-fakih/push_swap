@@ -75,8 +75,23 @@ long	ft_atoi_overflow(const char *str, int *overflow)
 		nb *= 10;
 		nb += str[i] - '0';
 		if (nb > INT_MAX || nb < INT_MIN)
-			return (*overflow = 1 , 0);
+			return (*overflow = 1, 0);
 		i++;
 	}
 	return (nb * sign);
+}
+
+void	free_array(char **n)
+{
+	int	i;
+
+	i = 0;
+	if (!n)
+		return ;
+	while (n[i])
+	{
+		free (n[i]);
+		i++;
+	}
+	free (n);
 }

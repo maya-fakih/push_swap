@@ -443,4 +443,13 @@ else cal the function w now you send this function
 else we will call a funtion that takes this list and bench and complexity and distortion to then sort the list
 
 
+28-dec-2025
 
+03:18 PM
+mfakih
+
+Done with the parsing and checked everything for memory leaks and conditional jumps
+all is great!!
+i will next work on the algoritms seperately and nicely
+
+well we still have to do the function that checks the disorder but these are simple

@@ -23,5 +23,11 @@ void	init(int *i, int *bench, char **comp, char **nbs);
 int		ft_streq(const char *s, const char *lit);
 int		comp_flag(const char *s);
 long	ft_atoi_overflow(const char *str, int *overflow);
+t_list	*to_list(char *nbs);
+void	free_array(char **n);
+t_list	*validate(int argc, char **argv, int *bench, char **comp);
+t_list	*create_node(int content);
+void	print_content(void *content);
+int		check_duplicates(t_list	*stack, int value);
 
 #endif

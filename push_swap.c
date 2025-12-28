@@ -21,7 +21,6 @@ int	main(int argc, char **argv)
 	stack_a = validate(argc, argv, &bench, &comp);
 	if (!stack_a)
 		return (free(comp), 0);
-	ft_printf(1, "%d\n", ft_lstsize(stack_a));
 	ft_lstiter(stack_a, print_content);
 	ft_lstclear(&stack_a, free);
 	return (free(comp), 0);

@@ -22,6 +22,9 @@ int	main(int argc, char **argv)
 	if (!stack_a)
 		return (free(comp), 0);
 	ft_lstiter(stack_a, print_content);
+	ft_printf(1, "the output of the simple alg is: %s", simple_algorithm(&stack_a));
+	ft_printf(1," the sorted content is:\n");
+	ft_lstiter(stack_a, print_content);
 	ft_lstclear(&stack_a, free);
 	return (free(comp), 0);
 }

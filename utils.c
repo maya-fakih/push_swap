@@ -16,25 +16,31 @@ void	ft_strjoin_sep(char **s1, char *s2, char *sep)
 {
 	char	*temp;
 
-	if (!s1 || !*s1 || !s2 || !sep)
+	if (!s1 || !s2 || !sep)
 		return ;
+	if (!*s1)
+	{
+		*s1 = ft_strdup(s2);
+		return ;
+	}
 	temp = *s1;
 	*s1 = ft_strjoin(*s1, sep);
-	if (!s1)
+	if (!*s1)
 	{
 		*s1 = temp;
 		return ;
 	}
-	free (temp);
+	free(temp);
 	temp = *s1;
 	*s1 = ft_strjoin(*s1, s2);
-	if (!s1)
+	if (!*s1)
 	{
 		*s1 = temp;
 		return ;
 	}
-	free (temp);
+	free(temp);
 }
+
 
 int	comp_flag(const char *s)
 {

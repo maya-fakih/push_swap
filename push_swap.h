@@ -29,5 +29,11 @@ t_list	*validate(int argc, char **argv, int *bench, char **comp);
 t_list	*create_node(int content);
 void	print_content(void *content);
 int		check_duplicates(t_list	*stack, int value);
+void	swap(t_list **stack);
+void	push(t_list **lst1, t_list **lst2);
+void	rotate(t_list **stack);
+void	rev_rotate(t_list **stack);
+int     min_value_in_list(t_list *stack, int *index);
+char    *simple_algorithm(t_list **stack_a);
 
 #endif

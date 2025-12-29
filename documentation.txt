@@ -541,3 +541,24 @@ and now i will sleep so that i dont code another mess to debug tmrw haha
 rest well,
 and Goodnight!!
 
+
+11:44 PM 
+mfakih 
+
+hey i had to give you a stats log before i sleep so here is a nice table of the tested values 
+
+for simple algorithms
++----------------------------+-----------+-----------------+
+|        Input Type          | # Numbers | # Operations    |
++----------------------------+-----------+-----------------+
+| Random shuffled 100        | 100       | 1776            |
+| Slightly shuffled 100      | 100       | 298             |
+| Random shuffled 100        | 100       | 1776            |
+| Alternating pairs 100      | 100       | 1492            |
+| Random shuffled 100        | 100       | 1545            |
+| Random shuffled 500        | 500       | 32581           |
+| Random shuffled 500        | 500       | 33398           |
++----------------------------+-----------+-----------------+
+
+yal byee
+

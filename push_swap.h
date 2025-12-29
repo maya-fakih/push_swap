@@ -33,7 +33,7 @@ void	swap(t_list **stack);
 void	push(t_list **lst1, t_list **lst2);
 void	rotate(t_list **stack);
 void	rev_rotate(t_list **stack);
-int     min_value_in_list(t_list *stack, int *index);
-char    *simple_algorithm(t_list **stack_a);
+int		min_value_in_list(t_list *stack, int *index);
+void	simple_algorithm(t_list **stack_a, t_list **stack_b, char **operations);
 
 #endif

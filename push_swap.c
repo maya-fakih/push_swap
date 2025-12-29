@@ -26,8 +26,6 @@ int	main(int argc, char **argv)
 	if (!stack_a)
 		return (free(comp), 0);
 	ft_lstiter(stack_a, print_content);
-	ft_printf(1, "the output of the simple alg is: %s", simple_algorithm(&stack_a));
-	ft_printf(1," the sorted content is:\n");
 	simple_algorithm(&stack_a, &stack_b, &operations);
 	ft_printf(1, "the output of the simple alg is:\n %s", operations);
 	ft_printf(1, "the sorted content is:\n");

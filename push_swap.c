@@ -16,15 +16,19 @@ int	main(int argc, char **argv)
 {
 	int		bench;
 	char	*comp;
+	char	*operations;
 	t_list	*stack_a;
+	t_list	*stack_b;
 
+	operations = NULL;
+	stack_b = NULL;
 	stack_a = validate(argc, argv, &bench, &comp);
 	if (!stack_a)
 		return (free(comp), 0);
-	ft_lstiter(stack_a, print_content);
-	ft_printf(1, "the output of the simple alg is: %s", simple_algorithm(&stack_a));
-	ft_printf(1," the sorted content is:\n");
+	simple_algorithm(&stack_a, &stack_b, &operations);
+	ft_printf(1, "the output of the simple alg is:\n %s", operations);
+	ft_printf(1, "the sorted content is:\n");
 	ft_lstiter(stack_a, print_content);
 	ft_lstclear(&stack_a, free);
-	return (free(comp), 0);
+	return (free(comp), free(operations), 0);
 }

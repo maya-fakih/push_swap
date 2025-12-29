@@ -453,3 +453,91 @@ all is great!!
 i will next work on the algoritms seperately and nicely
 
 well we still have to do the function that checks the disorder but these are simple
+
+29-dec-2025
+
+07:27 PM
+mfakih
+
+well, the last commit was horrible in every way i can think of nothing runs but hey! we have no leaks gahahah but the output is all over the place
+so now i will be working on it to try and figure out what the issue is so that i can get back to you with better updates
+
+i will start with decentralizing the stack_b by putting it in main w what is the issue with the fact that my stack b was never initialized?
+halaa sara7a how should i initialize it just malloc one empty place? make the content poin to null? w l next null? bsir when i push to b bghayer l content
+well idk let me think and get back 
+see yal
+
+
+
+10:43 PM
+mfakih
+
+todays update is as unique as it can ever be,
+and an important reminder to prioritize rest since with no breaks you will just be wasting time working tried
+and yesterdays update was living proof of it
+
+yes i did laly down the main structure but i had small mistakes that made the whole thing hard to debug
+the nb 1 issue akid was norminettte but that is nothing
+
+the 1st error i noticed which was causing all the conditional jumps is that i had 
+NOT INITIALIZED THE STRING THAT WILL HOLD THE OUTPUT!!
+that my friends scores nb one on how dumb i can be when im sleepy haha
+so that took a while to notice fixing it was quite simple (i was looking for worse errors when that stupid little thing missed me)
+
+the 2dn issue was that the array was now getting sorted bs i had leaks well obv if i fogot to init that output string i also forgot to free it so theres that
+
+3rd issue now the list was being not being sorted but all so weirdly
+an example that made me notice the issue is the following
+kindly note that i have not added the part where we calculate disorder yet since these basic cases are helping me debug :)
+./push_swap 1 2 3 4
+pb
+rra
+rra
+rra
+pb
+rra
+rra
+pb
+ra
+pb
+
+this was the output i was getting well very obviously
+I FORGOT TO PUSH BACK ALL THE DATA TO STACK A 
+
+so i did add the while loop of 4 lines that is now its seperate function
+called push_back_to_a to remind myself of this missed part 
+
+now the array at this point is being sorted but weirdly adding extra rotations
+which it shouldnt l2n i am comparing the index right
+wronggg
+awal shi l2n i wasnt updating the current inside the while loop i was updating it awal shi
+then only after the rotations
+and that was obvious in the example above well since it was doing all these rra 
+when the min was at the top
+
+so the issue is obviously the indexing and so one look at the find min function
+and oh no
+it does find min
+but what is it returning
+it returns the list len in the was it was written
+
+so i added a new variable to track position and updated the (*index) only when i found min
+
+now it worked!!
+
+then i tried an input that wasnt sorted the following 
+1 2 4 3 simple eh? 
+i expected the perfect output only rotate once the shortest direction
+
+but i got 3 rra rra rra 
+and here i noticed the last bug!
+the <> signs i used bel main do not reflect how the rotate functions work 
+again how basic can that be of an error
+
+so now we had it all done
+fixed all norm errors
+and now i will sleep so that i dont code another mess to debug tmrw haha
+
+rest well,
+and Goodnight!!
+

@@ -41,7 +41,6 @@ void	ft_strjoin_sep(char **s1, char *s2, char *sep)
 	free(temp);
 }
 
-
 int	comp_flag(const char *s)
 {
 	return (ft_streq(s, "--simple")

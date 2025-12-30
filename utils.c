@@ -100,3 +100,8 @@ void	free_array(char **n)
 	}
 	free (n);
 }
+
+int	get_ith_bit(int content, int i)
+{
+	return ((content >> i) & 1);
+}

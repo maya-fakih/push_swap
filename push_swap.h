@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mitani <mitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 00:04:25 by mfakih            #+#    #+#             */
-/*   Updated: 2025/12/27 18:07:28 by mfakih           ###   ########.fr       */
+/*   Updated: 2025/12/30 02:55:46 by mitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ void	rotate(t_list **stack);
 void	rev_rotate(t_list **stack);
 int		min_value_in_list(t_list *stack, int *index);
 void	simple_algorithm(t_list **stack_a, t_list **stack_b, char **operations);
+void	complex_algorithm(t_list **stack_a, t_list **stack_b, char **operations);
+int		get_ith_bit(int content, int i);
 
 #endif

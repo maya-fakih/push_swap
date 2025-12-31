@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mitani <mitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 00:32:43 by mitani            #+#    #+#             */
-/*   Updated: 2025/12/30 03:00:38 by mitani           ###   ########.fr       */
+/*   Updated: 2025/12/30 18:42:12 by mfakih           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,54 +15,100 @@
 static int	get_max_bits(t_list *stack)
 {
 	int	max;
-	int	*content;
+	int	*value;
 	int	bits;
 
 	max = 0;
+	bits = 0;
 	while (stack)
 	{
-		content = stack->content;
-		if ((*content > 0 && *content > max) || (*content < 0 && -*content > max))
-			max = (*content > 0) ? *content : -*content;
+		value = stack->content;
+		if ((*value > 0 && *value > max) || (*value < 0 && - *value > max))
+		{
+			if (*value > 0)
+				max = *value;
+			if (*value <= 0)
+				max = -(*value);
+		}
 		stack = stack->next;
 	}
-	bits = 0;
 	while ((1 << bits) <= max)
 		bits++;
 	return (bits);
 }
 
-void    complex_algorithm(t_list **stack_a, t_list **stack_b, char **operations)
+int	get_ith_bit(int content, int i)
+{
+	return ((content >> i) & 1);
+}
+
+int	indexx(int value, int *array, int len)
+{
+	int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		if (array[i] == value)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+void	rank_stack(t_list **stack_a)
+{
+	int		i;
+	int		len;
+	int		*nbs;
+	t_list	*n;
+
+	i = 0;
+	n = *stack_a;
+	nbs = malloc(ft_lstsize(*stack_a) * sizeof(int));
+	if (!nbs)
+		return ;
+	while (n)
+	{
+		nbs[i++] = *(int *)(n -> content);
+		n = n -> next;
+	}
+	len = i;
+	sort_int_tab(nbs, len);
+	n = *stack_a;
+	while (n)
+	{
+		(*(int *)((n)-> content)) = indexx(*(int *)((n)-> content), nbs, len);
+		n = n -> next;
+	}
+	free (nbs);
+}
+
+void	complex_algorithm(t_list **stack_a, t_list **stack_b, char **ops)
 {
 	int	i;
 	int	j;
-	int	content;
 	int	max_bits;
 
+	rank_stack(stack_a);
 	max_bits = get_max_bits(*stack_a);
-	i = 0;
-	while (i < max_bits)
-    {
-        j = ft_lstsize(*stack_a);
-        while (j-- > 0)
-        {
-            content = *(int *)(*stack_a)->content;
-            if (!get_ith_bit(content, i))
-            {
-                push(stack_a, stack_b);
-                ft_strjoin_sep(operations, "pb", "\n");
-            }
-            else
-            {
-                rotate(stack_a);
-                ft_strjoin_sep(operations, "ra", "\n");
-            }
-        }
-		while (ft_lstsize(*stack_b) > 0)
+	i = -1;
+	while (++i < max_bits)
+	{
+		j = ft_lstsize(*stack_a);
+		while (j-- > 0)
 		{
-			push(stack_b, stack_a);
-			ft_strjoin_sep(operations, "pa", "\n");
+			if (!get_ith_bit(*(int *)(*stack_a)->content, i))
+			{
+				push(stack_a, stack_b);
+				ft_strjoin_sep(ops, "pb", "\n");
+			}
+			else
+			{
+				rotate(stack_a);
+				ft_strjoin_sep(ops, "ra", "\n");
+			}
 		}
-        i++;
-    }
+		push_back_to_a(stack_a, stack_b, ops);
+	}
 }

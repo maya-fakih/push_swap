@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mitani <mitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 22:14:11 by mfakih            #+#    #+#             */
-/*   Updated: 2025/12/30 02:55:31 by mitani           ###   ########.fr       */
+/*   Updated: 2025/12/30 11:19:24 by mfakih           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	main(int argc, char **argv)
 		return (free(comp), 0);
 	ft_lstiter(stack_a, print_content);
 	complex_algorithm(&stack_a, &stack_b, &operations);
-	ft_printf(1, "the output of the complex alg is:\n %s", operations);
-	ft_printf(1, "the sorted content is:\n");
+	ft_printf(1, "the output of the comp alg is:\n%s", operations);
+	ft_printf(1, "\nthe sorted content is:\n");
 	ft_lstiter(stack_a, print_content);
 	ft_lstclear(&stack_a, free);
 	return (free(comp), free(operations), 0);

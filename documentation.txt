@@ -562,3 +562,112 @@ for simple algorithms
 
 yal byee
 
+
+30-dec-2025
+05:57
+
+mfakih
+
+today i fixed the complex algorithm updated by mitani yesterday
+the logic was all great applying radix sort clearly but it did not handle the possibility that the input might be -versa
+
+well why would that affect sorting you might say so here goes
+
+how does radix sort work, it is a good idea to chnck data not on its physical values
+but rather by its main constituents
+
+for example a simple sort would search for a min so it will need aprox n rotations and n pushes
+so O n squared
+
+a chuncking algorithm will find all elements less than radical n into a bucket
+thus it wont need n rotations to find a number it would need radical n rotations which is a huge simplification
+for n = 100 we will need at most 10 rotations instead of 100 for an unoptimized alg or 50 (considering like ours it rotates the shorter direction)
+
+No matter how large the number is, or how many numbers we have,
+all integers have 32 bits.
+
+So instead of comparing values directly, we can sort bit by bit.
+
+For example, let’s say we have these numbers written in binary:
+
+110
+111
+001
+
+
+This is how radix sort (LSD – least significant bit first) works.
+
+Step 1 — Least significant bit (bit 0)
+
+Look at the rightmost bit:
+
+110 → 0
+111 → 1
+001 → 1
+
+
+Rule:
+
+push 0 bits to stack B
+
+keep 1 bits in stack A
+
+preserve order (this is important)
+
+After pushing 0s to B:
+
+A: 111 001
+B: 110
+
+
+Push B back to A:
+
+A: 110 111 001
+
+Step 2 — Second least significant bit (bit 1)
+
+Check the second bit from the right:
+
+110 → 1
+111 → 1
+001 → 0
+
+
+Push 0s to B:
+
+A: 110 111
+B: 001
+
+
+Push B back to A:
+
+A: 001 110 111
+
+Step 3 — Third least significant bit (bit 2)
+
+Check the third bit:
+
+001 → 0
+110 → 1
+111 → 1
+
+
+Push 0s to B:
+
+A: 110 111
+B: 001
+
+
+Push back:
+
+A: 001 110 111
+
+Final result
+001
+110
+111
+
+Sorted correctly.
+
+
+now the issue with this bit sorting style is that negative numbers mess it up

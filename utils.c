@@ -6,7 +6,7 @@
 /*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 01:36:59 by mfakih            #+#    #+#             */
-/*   Updated: 2025/12/27 18:07:38 by mfakih           ###   ########.fr       */
+/*   Updated: 2025/12/30 08:37:28 by mfakih           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,4 @@ void	free_array(char **n)
 		i++;
 	}
 	free (n);
-}
-
-int	get_ith_bit(int content, int i)
-{
-	return ((content >> i) & 1);
 }

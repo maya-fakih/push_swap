@@ -671,3 +671,14 @@ Sorted correctly.
 
 
 now the issue with this bit sorting style is that negative numbers mess it up
+
+which is why i added the extra workflow under the main idea ranking in the file complex.c 
+these functions work on the existing stack_a and copy it into a side array
+sort that array
+then use the indexing of that array to replace each value in the linked list with its +ve representative nb
+or in other words ranking it
+we could have changed the linked list structure to accept a content and rank
+but that would complicate the other parts and would cause adjustments on libft so to avoid that we just changed the actual content
+and that does not conflict with the subject which mentions that we only care about the output being the operations not the content
+so all is still good!!
+

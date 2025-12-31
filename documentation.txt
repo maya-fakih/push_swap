@@ -682,3 +682,11 @@ but that would complicate the other parts and would cause adjustments on libft s
 and that does not conflict with the subject which mentions that we only care about the output being the operations not the content
 so all is still good!!
 
+31 dec
+06:51 PM
+mfakih
+
+i added the functions that calculate the disorder and chooses the correct algorithm based on that
+if the flag was adaptive or forces an alg based on the passed flags
+anyway we still have to print the benchmark and do the medium algorithm
+

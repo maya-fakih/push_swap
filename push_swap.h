@@ -41,6 +41,7 @@ int		get_ith_bit(int content, int i);
 int     indexx(int value, int *array, int len);
 void	rank_stack(t_list **stack_a);
 void	sort_int_tab(int *array, int len);
-
+double  compute_disorder(t_list *stack);
+void    push_a(t_list **stack_a, t_list **stack_b, char **ops);
 
 #endif

@@ -23,12 +23,9 @@ static int	get_max_bits(t_list *stack)
 	while (stack)
 	{
 		value = stack->content;
-		if ((*value > 0 && *value > max) || (*value < 0 && - *value > max))
+		if ((*value > 0 && *value > max))
 		{
-			if (*value > 0)
-				max = *value;
-			if (*value <= 0)
-				max = -(*value);
+			max = *value;
 		}
 		stack = stack->next;
 	}
@@ -90,6 +87,7 @@ void	complex_algorithm(t_list **stack_a, t_list **stack_b, char **ops)
 	int	j;
 	int	max_bits;
 
+	ft_printf(1, "\ncomplex alg\n");
 	rank_stack(stack_a);
 	max_bits = get_max_bits(*stack_a);
 	i = -1;

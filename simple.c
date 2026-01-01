@@ -49,6 +49,7 @@ void	simple_algorithm(t_list **stack_a, t_list **stack_b, char **operations)
 	int		index;
 	int		content;
 
+	ft_printf(1, "\nsimple alg\n");
 	while (ft_lstsize(*stack_a) > 1)
 	{
 		content = *(int *)(*stack_a)->content;

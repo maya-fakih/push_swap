@@ -42,6 +42,8 @@ int		indexx(int value, int *array, int len);
 void	rank_stack(t_list **stack_a);
 void	sort_int_tab(int *array, int len);
 double	compute_disorder(t_list *stack);
-void	solve(t_list **a, t_list **b, char **ops, const char *comp);
+void	solve(t_list **a, double d, char **ops, const char *comp);
+int		total_ops(char *ops);
+int		c_op(char *ops, char *cmd);
 
 #endif

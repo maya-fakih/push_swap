@@ -7,7 +7,8 @@ SRCS = ft_printf.c \
 	   ft_putnbr_len.c \
 	   ft_putptr_len.c \
 	   ft_putchar_len.c \
-	   ft_putstr_len.c
+	   ft_putstr_len.c \
+	   ft_putfloat_len.c
 
 OBJS = $(SRCS:.c=.o)
 INCLUDES = -I.

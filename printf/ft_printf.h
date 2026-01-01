@@ -23,5 +23,6 @@ int		ft_putchar_len(char c, int fd);
 int		ft_putstr_len(char *s, int fd);
 int		ft_putnbr_len(int n, int fd);
 int		ft_putptr_len(void *p, int fd);
+int		ft_putfloat_len(double f, int fd);
 
 #endif

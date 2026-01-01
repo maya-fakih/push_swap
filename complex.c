@@ -87,7 +87,6 @@ void	complex_algorithm(t_list **stack_a, t_list **stack_b, char **ops)
 	int	j;
 	int	max_bits;
 
-	ft_printf(1, "\ncomplex alg\n");
 	rank_stack(stack_a);
 	max_bits = get_max_bits(*stack_a);
 	i = -1;

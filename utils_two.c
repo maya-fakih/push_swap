@@ -37,3 +37,41 @@ void	sort_int_tab(int *array, int len)
 		i++;
 	}
 }
+
+int	total_ops(char *ops)
+{
+	int		i;
+	char	**n;
+
+	i = 0;
+	n = ft_split((char const *)ops, '\n');
+	if (!n)
+		return (0);
+	while (n[i])
+		i++;
+	free_array(n);
+	return (i);
+}
+
+int	c_op(char *ops, char *cmd)
+{
+	int		i;
+	int		count;
+	char	**n;
+
+	if (!ops || !cmd)
+		return (0);
+	n = ft_split((char const *)ops, '\n');
+	if (!n)
+		return (0);
+	i = 0;
+	count = 0;
+	while (n[i])
+	{
+		if (ft_streq(n[i], cmd))
+			count++;
+		i++;
+	}
+	free_array(n);
+	return (count);
+}

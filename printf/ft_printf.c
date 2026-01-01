@@ -36,6 +36,8 @@ static int	type(char c, int fd, va_list list)
 		count = ft_putptr_len(va_arg(list, void *), fd);
 	else if (c == '%')
 		count = ft_putchar_len('%', fd);
+	else if (c == 'f')
+		count = ft_putfloat_len(va_arg(list, double), fd);
 	return (count);
 }
 

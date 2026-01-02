@@ -6,7 +6,7 @@
 /*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 22:14:11 by mfakih            #+#    #+#             */
-/*   Updated: 2026/01/02 18:40:48 by mfakih           ###   ########.fr       */
+/*   Updated: 2026/01/02 18:42:15 by mfakih           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ int	main(int argc, char **argv)
 	disorder = compute_disorder(stack_a);
 	solve(&stack_a, disorder, &operations, comp);
 	ft_printf(1, "%s", operations);
-	ft_lstiter(stack_a, print_content);
 	if (bench == 1)
 		print_bench(operations, comp, disorder);
 	ft_lstclear(&stack_a, free);

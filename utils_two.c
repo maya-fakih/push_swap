@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_two.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfakih <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 18:37:19 by mfakih            #+#    #+#             */
-/*   Updated: 2025/12/30 18:37:21 by mfakih           ###   ########.fr       */
+/*   Updated: 2026/01/02 15:01:30 by mfakih           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,31 @@ int	c_op(char *ops, char *cmd)
 	}
 	free_array(n);
 	return (count);
+}
+
+int	find_element_position(t_list *stack, int rank)
+{
+	int	pos;
+
+	pos = 0;
+	while (stack)
+	{
+		if (*(int *)stack -> content == rank)
+			return (pos);
+		stack = stack -> next;
+		pos++;
+	}
+	return (-1);
+}
+
+int	ft_isqrt(int n)
+{
+	int	i;
+
+	if (n < 0)
+		return (-1);
+	i = 0;
+	while (i * i <= n)
+		i++;
+	return (i - 1);
 }

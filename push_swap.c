@@ -6,7 +6,7 @@
 /*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 22:14:11 by mfakih            #+#    #+#             */
-/*   Updated: 2025/12/30 11:19:24 by mfakih           ###   ########.fr       */
+/*   Updated: 2026/01/02 16:08:23 by mfakih           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	solve(t_list **a, double d, char **ops, const char *comp)
 	if (ft_streq(comp, "--simple"))
 		simple_algorithm(a, &b, ops);
 	else if (ft_streq(comp, "--medium"))
-		simple_algorithm(a, &b, ops);
+		medium_algorithm(a, &b, ops);
 	else if (ft_streq(comp, "--complex"))
 		complex_algorithm(a, &b, ops);
 	else
@@ -60,7 +60,7 @@ void	solve(t_list **a, double d, char **ops, const char *comp)
 		if (d < 0.2)
 			simple_algorithm(a, &b, ops);
 		else if (d < 0.5)
-			simple_algorithm(a, &b, ops);
+			medium_algorithm(a, &b, ops);
 		else
 			complex_algorithm(a, &b, ops);
 	}
@@ -109,10 +109,7 @@ int	main(int argc, char **argv)
 		return (free(comp), 0);
 	disorder = compute_disorder(stack_a);
 	solve(&stack_a, disorder, &operations, comp);
-	ft_lstiter(stack_a, print_content);
-	ft_printf(1, "the output is:\n%s", operations);
-	ft_printf(1, "\nthe sorted content is:\n");
-	ft_lstiter(stack_a, print_content);
+	ft_printf(1, "%s", operations);
 	if (bench == 1)
 		print_bench(operations, comp, disorder);
 	ft_lstclear(&stack_a, free);

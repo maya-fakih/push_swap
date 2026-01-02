@@ -6,7 +6,7 @@
 /*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 00:04:25 by mfakih            #+#    #+#             */
-/*   Updated: 2025/12/30 18:41:48 by mfakih           ###   ########.fr       */
+/*   Updated: 2026/01/02 16:08:50 by mfakih           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,15 @@ double	compute_disorder(t_list *stack);
 void	solve(t_list **a, double d, char **ops, const char *comp);
 int		total_ops(char *ops);
 int		c_op(char *ops, char *cmd);
+int		find_element_position(t_list *stack, int rank);
+void	medium_algorithm(t_list **stack_a, t_list **stack_b, char **ops);
+int		ft_isqrt(int n);
+void	pb(t_list **stack_a, t_list **stack_b, char **ops);
+void	pa(t_list **stack_a, t_list **stack_b, char **ops);
+void	pb_rb(t_list **stack_a, t_list **stack_b, char **ops);
+void	ra(t_list **stack_a, char **ops);
+void	rb(t_list **stack_b, char **ops);
+void	rrb(t_list **stack_b, char **ops);
+void	sort_push_a(t_list **stack_a, t_list **stack_b, char **ops, int n);
 
 #endif

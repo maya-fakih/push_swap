@@ -6,7 +6,7 @@
 /*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 00:04:25 by mfakih            #+#    #+#             */
-/*   Updated: 2026/01/02 16:08:50 by mfakih           ###   ########.fr       */
+/*   Updated: 2026/01/02 18:58:59 by mfakih           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,9 @@ void	ra(t_list **stack_a, char **ops);
 void	rb(t_list **stack_b, char **ops);
 void	rrb(t_list **stack_b, char **ops);
 void	sort_push_a(t_list **stack_a, t_list **stack_b, char **ops, int n);
+void	sort_three(t_list **stack, char **ops);
+void	sa(t_list **stack, char **ops);
+void	sa_ra(t_list **stack, char **ops);
+void	sa_rra(t_list **stack, char **ops);
 
 #endif

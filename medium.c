@@ -6,7 +6,7 @@
 /*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 16:04:22 by mfakih            #+#    #+#             */
-/*   Updated: 2026/01/02 16:10:34 by mfakih           ###   ########.fr       */
+/*   Updated: 2026/01/02 18:30:09 by mfakih           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	medium_algorithm(t_list **stack_a, t_list **stack_b, char **ops)
 				pb(stack_a, stack_b, ops);
 			else if (*(int *)((*stack_a)-> content) <= (i + 1) * n)
 				pb_rb(stack_a, stack_b, ops);
-			ra(stack_a, ops);
+			else
+				ra(stack_a, ops);
 		}
 		i += 2;
 	}

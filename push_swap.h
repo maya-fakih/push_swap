@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mitani <mitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 00:04:25 by mfakih            #+#    #+#             */
-/*   Updated: 2025/12/30 18:41:48 by mfakih           ###   ########.fr       */
+/*   Updated: 2026/01/02 03:21:22 by mitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,17 @@ double	compute_disorder(t_list *stack);
 void	solve(t_list **a, double d, char **ops, const char *comp);
 int		total_ops(char *ops);
 int		c_op(char *ops, char *cmd);
+int		get_chunk_count(int stack_size);
+int		get_chunk_size(int stack_size);
+int		*calculate_chunk_ranges(int stack_size, int *chunk_count);
+int		find_element_position(t_list *stack, int rank);
+void	push_chunk_to_b(t_list **stack_a, t_list **stack_b, int min_rank,
+			int max_rank, char **operations);
+int		is_chunk_sorted(t_list *stack_b, int min_rank, int max_rank);
+void	rotate_to_chunk_max(t_list **stack_b, int min_rank, int max_rank,
+			char **operations);
+void	push_chunk_to_a(t_list **stack_a, t_list **stack_b, int min_rank,
+			int max_rank, char **operations);
+void	medium_algorithm(t_list **stack_a, t_list **stack_b, char **operations);
 
 #endif

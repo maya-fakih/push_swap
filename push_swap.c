@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mitani <mitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 22:14:11 by mfakih            #+#    #+#             */
-/*   Updated: 2026/01/02 03:24:06 by mitani           ###   ########.fr       */
+/*   Updated: 2026/01/02 16:08:23 by mfakih           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,7 @@ int	main(int argc, char **argv)
 		return (free(comp), 0);
 	disorder = compute_disorder(stack_a);
 	solve(&stack_a, disorder, &operations, comp);
-	ft_lstiter(stack_a, print_content);
-	ft_printf(1, "the output is:\n%s", operations);
-	ft_printf(1, "\nthe sorted content is:\n");
-	ft_lstiter(stack_a, print_content);
+	ft_printf(1, "%s", operations);
 	if (bench == 1)
 		print_bench(operations, comp, disorder);
 	ft_lstclear(&stack_a, free);

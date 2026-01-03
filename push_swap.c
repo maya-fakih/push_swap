@@ -6,7 +6,7 @@
 /*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 22:14:11 by mfakih            #+#    #+#             */
-/*   Updated: 2026/01/03 09:42:26 by mfakih           ###   ########.fr       */
+/*   Updated: 2026/01/03 10:03:53 by mfakih           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,13 @@ int	main(int argc, char **argv)
 	t_list	*stack_a;
 
 	operations = NULL;
-	operations = ft_strdup("");
 	stack_a = validate(argc, argv, &bench, &comp);
 	if (!stack_a)
-		return (free(comp), free(operations), 0);
+		return (free(comp), 0);
 	disorder = compute_disorder(stack_a);
-	if (ft_lstsize(stack_a) == 3)
+	if (disorder == 0.0)
+		operations = ft_strdup("");
+	else if (ft_lstsize(stack_a) == 3)
 		sort_three(&stack_a, &operations);
 	else
 		solve(&stack_a, disorder, &operations, comp);

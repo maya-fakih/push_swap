@@ -6,7 +6,7 @@
 /*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 18:59:13 by mfakih            #+#    #+#             */
-/*   Updated: 2026/01/02 19:01:00 by mfakih           ###   ########.fr       */
+/*   Updated: 2026/01/03 09:31:59 by mfakih           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ void	sa(t_list **stack, char **ops)
 {
 	swap(stack);
 	ft_strjoin_sep(ops, "sa", "\n");
+}
+
+void	rra(t_list **stack, char **ops)
+{
+	rev_rotate(stack);
+	ft_strjoin_sep(ops, "rra", "\n");
 }
 
 void	sort_three(t_list **stack, char **ops)

@@ -6,7 +6,7 @@
 /*   By: mfakih <mfakih@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 22:14:11 by mfakih            #+#    #+#             */
-/*   Updated: 2026/01/02 19:05:02 by mfakih           ###   ########.fr       */
+/*   Updated: 2026/01/03 09:42:26 by mfakih           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,7 @@ void	solve(t_list **a, double d, char **ops, const char *comp)
 
 	b = NULL;
 	if (d == 0.0)
-	{
-		*ops = ft_strdup("");
 		return ;
-	}
 	if (ft_streq(comp, "--simple"))
 		simple_algorithm(a, &b, ops);
 	else if (ft_streq(comp, "--medium"))
@@ -64,7 +61,6 @@ void	solve(t_list **a, double d, char **ops, const char *comp)
 		else
 			complex_algorithm(a, &b, ops);
 	}
-	ft_strjoin_sep(ops, "", "\n");
 }
 
 void	print_bench(char *ops, char *comp, double d)
@@ -105,11 +101,16 @@ int	main(int argc, char **argv)
 	t_list	*stack_a;
 
 	operations = NULL;
+	operations = ft_strdup("");
 	stack_a = validate(argc, argv, &bench, &comp);
 	if (!stack_a)
-		return (free(comp), 0);
+		return (free(comp), free(operations), 0);
 	disorder = compute_disorder(stack_a);
-	solve(&stack_a, disorder, &operations, comp);
+	if (ft_lstsize(stack_a) == 3)
+		sort_three(&stack_a, &operations);
+	else
+		solve(&stack_a, disorder, &operations, comp);
+	ft_strjoin_sep(&operations, "", "\n");
 	ft_printf(1, "%s", operations);
 	if (bench == 1)
 		print_bench(operations, comp, disorder);

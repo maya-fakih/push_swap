@@ -3,7 +3,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRC = push_swap.c operations.c utils.c parse_input.c \
 		list_parsing.c simple.c complex.c medium.c utils_two.c \
-		ops_coverups.c ops_coverups_two.c
+		ops_coverups.c ops_coverups_two.c sort_three.c
 OBJ = $(SRC:.c=.o)
 
 LIBFT_DIR = ./libft
